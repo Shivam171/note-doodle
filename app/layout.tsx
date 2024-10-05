@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Note Doodle | Welcome",
   description: "Streamline content refinement and idea visualization through both writing and drawing",
   icons: {
-    icon: "/logo.png",
+    icon: "/favicon.png",
   },
 };
 
