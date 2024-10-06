@@ -3,8 +3,20 @@ import { Github, Archive, FilePlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { Separator } from '@/components/ui/separator'
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
-export default function Bottom() {
+
+export default function Bottom({ onFileCreate }: any) {
+    const [fileInput, setFileInput] = useState("")
     const menuList = [
         {
             id: 1,
@@ -33,7 +45,40 @@ export default function Bottom() {
                         {item.name}
                     </Button>
                 ))}
-                <Button className='mt-2 justify-start gap-1 items-center'><FilePlus className="w-4 h-4" />New File</Button>
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button className='mt-2 justify-start gap-1 items-center w-full'>
+                            <FilePlus className="w-4 h-4" /> New File
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle className='text-lg'>Create new file</DialogTitle>
+                            <DialogDescription>
+                                <input
+                                    type="text"
+                                    onChange={(e) => setFileInput(e.target.value)}
+                                    placeholder='Enter file name'
+                                    className="border border-gray-300 rounded-md p-2 w-full outline-none"
+                                />
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                            <DialogClose asChild>
+                                <Button
+                                    onClick={() => onFileCreate(fileInput)}
+                                    type="button"
+                                    disabled={!(fileInput && fileInput.trim().length > 3)}
+                                    variant="default">
+                                    Create
+                                </Button>
+                            </DialogClose>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+
+
+
                 <div className="h-2 w-full bg-gray-50 rounded-full">
                     <div className="h-2 w-[40%] bg-black rounded-full">
                     </div>
