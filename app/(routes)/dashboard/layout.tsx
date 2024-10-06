@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { api } from "@/convex/_generated/api";
 import { useConvex } from "convex/react";
 import { useRouter } from "next/navigation";
+import SideNav from "@/app/_components/Sidebar/SideNav";
 export default function DashboardLayout({
     children,
 }: Readonly<{
@@ -28,6 +29,15 @@ export default function DashboardLayout({
     }
 
     return (
-        <div>{children}</div>
+        <div className="flex flex-col h-screen">
+            <div className="grid grid-cols-4">
+                <div className="">
+                    <SideNav />
+                </div>
+                <div className="grid-cols-3">
+                    {children}
+                </div>
+            </div>
+        </div>
     )
 }
