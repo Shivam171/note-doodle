@@ -14,8 +14,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-
-export default function Bottom({ onFileCreate }: any) {
+export default function Bottom({ onFileCreate, totalFiles }: any) {
     const [fileInput, setFileInput] = useState("")
     const menuList = [
         {
@@ -59,7 +58,7 @@ export default function Bottom({ onFileCreate }: any) {
                                     type="text"
                                     onChange={(e) => setFileInput(e.target.value)}
                                     placeholder='Enter file name'
-                                    className="border border-gray-300 rounded-md p-2 w-full outline-none"
+                                    className="border border-gray-300 rounded-md p-2 w-full outline-none font-semibold placeholder:font-normal"
                                 />
                             </DialogDescription>
                         </DialogHeader>
@@ -76,14 +75,14 @@ export default function Bottom({ onFileCreate }: any) {
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
-
-
-
                 <div className="h-2 w-full bg-gray-50 rounded-full">
-                    <div className="h-2 w-[40%] bg-black rounded-full">
+                    <div
+                        className={`h-2 bg-black rounded-full`}
+                        style={{ width: `${(totalFiles / 5) * 100}%` }}
+                    >
                     </div>
                 </div>
-                <h2 className='text-xs'>1 out of <b>5</b> files used</h2>
+                <h2 className='text-xs'><b>{totalFiles}</b> out of <b>5</b> files used</h2>
                 <p className='text-xs'><button><u><b>Upgrade</b></u></button> to get unlimited access</p>
             </div>
         </div>
