@@ -4,6 +4,8 @@ import { LogoutLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
 import { useConvex, useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useEffect } from "react";
+import DashboardHeader from "@/app/_components/DashboardHeader";
+import FileList from "@/app/_components/FileList";
 
 export default function Dashboard() {
     const { user }: any = useKindeBrowserClient();
@@ -30,10 +32,9 @@ export default function Dashboard() {
     }
 
     return (
-        <div>
-            <LogoutLink>
-                <Button>Logout</Button>
-            </LogoutLink>
+        <div className="flex flex-col h-screen w-full p-4">
+            <DashboardHeader user={user} />
+            <FileList user={user} />
         </div>
     )
 }
