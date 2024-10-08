@@ -9,12 +9,40 @@ import Quote from '@editorjs/quote';
 // @ts-ignore
 import Paragraph from '@editorjs/paragraph';
 import CodeTool from '@editorjs/code';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+import { toast } from 'sonner';
 
-export default function Editor() {
+export default function Editor({ onSaveTrigger, fileId }: any) {
     const ref = useRef<EditorJS>();
+
+    const updateDocument = useMutation(api.files.updateDocument);
+
     useEffect(() => {
         initEditor();
     }, [])
+
+    useEffect(() => {
+        onSaveTrigger && onSaveDocument();
+    }, [onSaveTrigger])
+
+    const onSaveDocument = () => {
+        if (ref.current) {
+            ref.current.save().then((outputData) => {
+                console.log('Article data: ', outputData);
+                updateDocument({
+                    _id: fileId,
+                    document: JSON.stringify(outputData)
+                });
+            }).then(res => {
+                toast('Document Updated!');
+            }).catch((error) => {
+                console.log('Saving failed: ', error);
+                toast('Server error while saving document');
+            });
+        }
+    }
+
 
     const rawDocument = {
         "time": 1628536000000,
@@ -91,10 +119,9 @@ export default function Editor() {
     }
 
     return (
-        <div>
+        <>
             <div className="h-full" id="editorjs">
-
             </div>
-        </div>
+        </>
     )
 }

@@ -1,14 +1,19 @@
+"use client"
 import WorkspaceHeader from "../_components/WorkspaceHeader"
 import Editor from "../_components/Editor"
-export default function Workspace() {
+import { useState } from "react"
+
+export default function Workspace({ params }: any) {
+    const [triggerSave, setTriggerSave] = useState(false);
+
     return (
         <div className="flex flex-col h-screen w-full">
-            <WorkspaceHeader />
+            <WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)} />
             {/* Workspace Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 h-full">
                 {/* Document */}
                 <div className="">
-                    <Editor />
+                    <Editor onSaveTrigger={triggerSave} fileId={params.id} />
                 </div>
                 {/* Whiteboard/Canvas */}
                 <div className="">
