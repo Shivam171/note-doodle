@@ -12,15 +12,16 @@ import CodeTool from '@editorjs/code';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
+import { FILE } from '../[id]/page';
 
-export default function Editor({ onSaveTrigger, fileId }: any) {
+export default function Editor({ onSaveTrigger, fileId, fileData }: { onSaveTrigger: any, fileId: any, fileData: FILE | any }) {
     const ref = useRef<EditorJS>();
 
     const updateDocument = useMutation(api.files.updateDocument);
 
     useEffect(() => {
-        initEditor();
-    }, [])
+        fileData && initEditor();
+    }, [fileData])
 
     useEffect(() => {
         onSaveTrigger && onSaveDocument();
@@ -71,7 +72,7 @@ export default function Editor({ onSaveTrigger, fileId }: any) {
     const initEditor = () => {
         const editor = new EditorJS({
             holder: 'editorjs',
-            data: document,
+            data: fileData?.document ? JSON.parse(fileData.document) : rawDocument,
             tools: {
                 paragraph: {
                     class: Paragraph,
