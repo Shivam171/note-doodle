@@ -16,7 +16,8 @@ import {
     DropdownMenuSubContent,
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { useRouter } from 'next/navigation';
 
 export interface FILE {
     archive: boolean,
@@ -33,6 +34,7 @@ export interface FILE {
 export default function FileList({ user }: any) {
     const { fileList_, setFileList_ } = useContext(FileListContext);
     const [fileList, setFileList] = useState<any>();
+    const router = useRouter();
 
     useEffect(() => {
         fileList_ && setFileList(fileList_);
@@ -53,7 +55,7 @@ export default function FileList({ user }: any) {
 
                     <tbody className="divide-y divide-gray-200">
                         {fileList && fileList?.map((file: FILE, index: number) => (
-                            <tr className="odd:bg-gray-50" key={index}>
+                            <tr className="odd:bg-gray-50 hover:bg-gray-200 cursor-pointer transition-colors" key={index} onClick={() => router.push(`/workspace/` + file?._id)}>
                                 <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{file?.fileName}</td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">{moment(file?._creationTime).format("DD/MM/YYYY")}</td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">{moment(file?.updatedAt).format("DD/MM/YYYY")}</td>
