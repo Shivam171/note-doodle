@@ -13,6 +13,8 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import Constant from '@/app/_constant/Constant'
+import Pricing from '../Pricing'
 
 export default function Bottom({ onFileCreate, totalFiles }: any) {
     const [fileInput, setFileInput] = useState("")
@@ -50,30 +52,41 @@ export default function Bottom({ onFileCreate, totalFiles }: any) {
                             <FilePlus className="w-4 h-4" /> New File
                         </Button>
                     </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle className='text-lg'>Create new file</DialogTitle>
-                            <DialogDescription>
-                                <input
-                                    type="text"
-                                    onChange={(e) => setFileInput(e.target.value)}
-                                    placeholder='Enter file name'
-                                    className="border border-gray-300 rounded-md p-2 w-full outline-none font-semibold placeholder:font-normal"
-                                />
-                            </DialogDescription>
-                        </DialogHeader>
-                        <DialogFooter>
-                            <DialogClose asChild>
-                                <Button
-                                    onClick={() => onFileCreate(fileInput)}
-                                    type="button"
-                                    disabled={!(fileInput && fileInput.trim().length > 3)}
-                                    variant="default">
-                                    Create
-                                </Button>
-                            </DialogClose>
-                        </DialogFooter>
-                    </DialogContent>
+                    {totalFiles < Constant.MAX_FREE_FILES ? (
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle className='text-lg'>Create new file</DialogTitle>
+                                <DialogDescription>
+                                    <input
+                                        type="text"
+                                        onChange={(e) => setFileInput(e.target.value)}
+                                        placeholder='Enter file name'
+                                        className="border border-gray-300 rounded-md p-2 w-full outline-none font-semibold placeholder:font-normal"
+                                    />
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogFooter>
+                                <DialogClose asChild>
+                                    <Button
+                                        onClick={() => onFileCreate(fileInput)}
+                                        type="button"
+                                        disabled={!(fileInput && fileInput.trim().length > 3)}
+                                        variant="default">
+                                        Create
+                                    </Button>
+                                </DialogClose>
+                            </DialogFooter>
+                        </DialogContent>
+                    ) : (
+                        <DialogContent className='max-w-3xl'>
+                            <DialogHeader>
+                                <DialogTitle className='text-lg'>Upgrade Plan</DialogTitle>
+                                <DialogDescription>
+                                    <Pricing />
+                                </DialogDescription>
+                            </DialogHeader>
+                        </DialogContent>
+                    )}
                 </Dialog>
                 <div className="h-2 w-full bg-gray-50 rounded-full">
                     <div
@@ -82,7 +95,7 @@ export default function Bottom({ onFileCreate, totalFiles }: any) {
                     >
                     </div>
                 </div>
-                <h2 className='text-xs'><b>{totalFiles}</b> out of <b>5</b> files used</h2>
+                <h2 className='text-xs'><b>{totalFiles}</b> out of <b>{Constant.MAX_FREE_FILES}</b> files used</h2>
                 <p className='text-xs'><button><u><b>Upgrade</b></u></button> to get unlimited access</p>
             </div>
         </div>
