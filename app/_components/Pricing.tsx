@@ -33,7 +33,22 @@ export default function Pricing() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
 
-                            <span className="text-gray-700"> 15 teams included </span>
+                            <span className="text-gray-700"> unlimited files included </span>
+                        </li>
+
+                        <li className="flex items-center gap-1">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="size-5 text-gray-700"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+
+                            <span className="text-gray-700"> 20 teams creation </span>
                         </li>
 
                         <li className="flex items-center gap-1">
@@ -147,7 +162,22 @@ export default function Pricing() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
 
-                            <span className="text-gray-700"> 5 teams included </span>
+                            <span className="text-gray-700"> unlimited files included </span>
+                        </li>
+
+                        <li className="flex items-center gap-1">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="size-5 text-gray-700"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+
+                            <span className="text-gray-700"> 10 teams creation </span>
                         </li>
 
                         <li className="flex items-center gap-1">
