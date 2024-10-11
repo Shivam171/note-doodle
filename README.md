@@ -1,3 +1,5 @@
+![Note Doodle](https://github.com/user-attachments/assets/be7f117c-7a2e-4a3d-a743-b1b697ba1fc3)
+
 # 🧽 Note Doodle
 
 A web app built using **Next.js** and **Convex** that allows users to create and manage teams with files that include both an editor (powered by **Editor.js**) and a canvas (powered by **Excalidraw**). Authentication is handled via **Kinde Auth**, and users can create up to 5 teams for free, with each team containing up to 5 files.
