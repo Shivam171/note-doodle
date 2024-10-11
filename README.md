@@ -9,7 +9,7 @@ A web app built using **Next.js** and **Convex** that allows users to create and
 - 🔐 **Secure Authentication**: Handled by Kinde Auth, ensuring all user data is safe and secure.
 - 📝 **Rich Text Editing**: Each file comes with an editor powered by [Editor.js](https://editorjs.io/), offering a modular, block-based content editing experience.
 - 🎨 **Canvas Drawing**: Use [Excalidraw](https://excalidraw.com/) for a fun and intuitive drawing experience within your files.
-- 👥 **Teams**: Users can create up to 5 teams, each containing 5 files.
+- 👥 **Teams**: Users can create up to 5 teams, each containing 5 files. If user want to create more teams and add more files, he will have to upgrade his plan.
 - 📂 **File Management**: Manage files within teams, switch between editors and canvases seamlessly.
 - 🛡️ **Protected Routes**: Routes are secured, ensuring only authenticated users can access their teams and files.
 
