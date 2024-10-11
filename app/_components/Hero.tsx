@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import Constant from "../_constant/Constant";
 
 export default function Hero() {
     return (
@@ -13,7 +14,7 @@ export default function Hero() {
                         <LoginLink postLoginRedirectURL="/dashboard">
                             <Button type="button" variant="default">Get Started</Button>
                         </LoginLink>
-                        <Button type="button" variant="outline">Learn More</Button>
+                        <Button type="button" variant="outline" onClick={() => window.open(Constant.GITHUB_REPO, '_blank')}>Learn More</Button>
                     </div>
                     <div className="mt-3 flex flex-col gap-1 sm:items-center lg:items-start">
                         <h2 className="text-gray-500">Trusted by teams at</h2>

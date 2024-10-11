@@ -21,8 +21,9 @@ export interface FILE {
 export default function Workspace({ params }: any) {
     const [triggerSave, setTriggerSave] = useState(false);
     const [fileData, setFileData] = useState<FILE | any>();
-    const [leftWidth, setLeftWidth] = useState(50);
+    const [leftWidth, setLeftWidth] = useState(55);
     const [isDragging, setIsDragging] = useState(false);
+    const [selectedView, setSelectedView] = useState<"notes" | "canvas" | "both">("both");
     const convex = useConvex();
 
     useEffect(() => {
@@ -67,24 +68,42 @@ export default function Workspace({ params }: any) {
 
     return (
         <div className="flex flex-col h-screen w-full">
-            <WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)} fileId={params.id} />
+            <WorkspaceHeader
+                onSave={() => setTriggerSave(!triggerSave)}
+                fileId={params.id}
+                selectedView={selectedView}
+                setSelectedView={setSelectedView}
+            />
             {/* Workspace Layout */}
-            <div className="flex h-full px-6">
+            <div className="flex h-full w-full px-6 overflow-y-auto">
                 {/* Document */}
-                <div className="relative" style={{ width: `${leftWidth}%` }}>
-                    <Editor onSaveTrigger={triggerSave} fileId={params.id} fileData={fileData} />
-                </div>
+                {selectedView === "notes" && (
+                    <div className="relative w-full overflow-y-auto">
+                        <Editor onSaveTrigger={triggerSave} fileId={params.id} fileData={fileData} />
+                    </div>
+                )}
 
-                {/* Draggable Divider */}
-                <div
-                    className="w-1 bg-gray-100 cursor-col-resize"
-                    onMouseDown={handleMouseDown}
-                ></div>
+                {selectedView === "both" && (
+                    <>
+                        {/* Document */}
+                        <div className="relative overflow-y-auto" style={{ width: `${leftWidth}%` }}>
+                            <Editor onSaveTrigger={triggerSave} fileId={params.id} fileData={fileData} />
+                        </div>
+                        {/* Draggable Divider */}
+                        <div className="w-1 bg-gray-100 cursor-col-resize" onMouseDown={handleMouseDown}></div>
+                        {/* Whiteboard/Canvas */}
+                        <div className="border-l" style={{ width: `${100 - leftWidth}%` }}>
+                            <Canvas onSaveTrigger={triggerSave} fileId={params.id} fileData={fileData} />
+                        </div>
+                    </>
+                )}
 
                 {/* Whiteboard/Canvas */}
-                <div className="border-l" style={{ width: `${100 - leftWidth}%` }}>
-                    <Canvas onSaveTrigger={triggerSave} fileId={params.id} fileData={fileData} />
-                </div>
+                {selectedView === "canvas" && (
+                    <div className="relative" style={{ width: "100%" }}>
+                        <Canvas onSaveTrigger={triggerSave} fileId={params.id} fileData={fileData} />
+                    </div>
+                )}
             </div>
         </div>
     );

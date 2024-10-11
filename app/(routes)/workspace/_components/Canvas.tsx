@@ -50,7 +50,6 @@ export default function Canvas({ onSaveTrigger, fileId, fileData }: any) {
                             <MainMenu.DefaultItems.SaveAsImage />
                             <MainMenu.DefaultItems.ChangeCanvasBackground />
                         </MainMenu>
-
                         <WelcomeScreen>
                             <WelcomeScreen.Hints.ToolbarHint>
                                 <p> ToolBar Area </p>

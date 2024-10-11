@@ -38,13 +38,6 @@ export default function SideNavTopSection({ user, setActiveTeamInfo }: any) {
             icon: UserPen,
             isCreateTeam: true
         },
-        {
-            id: 2,
-            name: 'Settings',
-            path: '/settings',
-            icon: Settings,
-            isCreateTeam: false
-        }
     ]
 
     // Function to handle team creation logic
@@ -154,10 +147,10 @@ export default function SideNavTopSection({ user, setActiveTeamInfo }: any) {
                     </Popover>
                 </div>
                 {/* All Files Button */}
-                <Button className="mt-2 w-full flex justify-start items-center gap-1">
+                {/* <Button className="mt-2 w-full flex justify-start items-center gap-1">
                     <LayoutGrid className="w-4 h-4" />
                     <span>All Files</span>
-                </Button>
+                </Button> */}
             </div>
             <Dialog open={showPricingDialog} onOpenChange={setShowPricingDialog}>
                 <DialogContent className='max-w-3xl'>

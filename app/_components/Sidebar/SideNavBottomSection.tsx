@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Github, Archive, FilePlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 import { Separator } from '@/components/ui/separator'
 import {
     Dialog,
@@ -18,19 +17,15 @@ import Pricing from '../Pricing'
 
 export default function Bottom({ onFileCreate, totalFiles }: any) {
     const [fileInput, setFileInput] = useState("")
+    const [showPricingDialog, setShowPricingDialog] = useState(false);
+
     const menuList = [
         {
             id: 1,
             name: "Github",
-            path: 'https://github.com/Shivam171/note-doodle',
+            path: Constant.GITHUB_REPO,
             icon: Github
         },
-        {
-            id: 2,
-            name: 'Archive',
-            path: '',
-            icon: Archive
-        }
     ]
     return (
         <div>
@@ -46,7 +41,7 @@ export default function Bottom({ onFileCreate, totalFiles }: any) {
                         {item.name}
                     </Button>
                 ))}
-                <Dialog>
+                <Dialog open={showPricingDialog} onOpenChange={setShowPricingDialog}>
                     <DialogTrigger asChild>
                         <Button className='mt-2 justify-start gap-1 items-center w-full'>
                             <FilePlus className="w-4 h-4" /> New File
@@ -96,7 +91,7 @@ export default function Bottom({ onFileCreate, totalFiles }: any) {
                     </div>
                 </div>
                 <h2 className='text-xs'><b>{totalFiles}</b> out of <b>{Constant.MAX_FREE_FILES}</b> files used</h2>
-                <p className='text-xs'><button><u><b>Upgrade</b></u></button> to get unlimited access</p>
+                <p className='text-xs'><button onClick={() => setShowPricingDialog(true)}><u><b>Upgrade</b></u></button> to get unlimited access</p>
             </div>
         </div>
     )
